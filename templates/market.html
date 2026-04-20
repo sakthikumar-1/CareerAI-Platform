@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Insights - CareerAI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="animated-bg"></div>
+    
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">Career<span class="gradient">AI</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/predict">Predict</a>
+                <a href="/readiness">Readiness</a>
+                <a href="/market" class="active">Market</a>
+            </div>
+        </nav>
+
+        <div class="market-container">
+            <div class="market-header">
+                <h1>📊 Job Market Intelligence</h1>
+                <p>Real-time insights on trending skills, salaries, and industry demands</p>
+            </div>
+
+            <!-- Trending Skills -->
+            <div class="market-section">
+                <h2>🔥 Most In-Demand Skills</h2>
+                <div class="trending-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Skill</th>
+                                <th>Growth Rate</th>
+                                <th>Demand Level</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for skill in market_data.trending_skills %}
+                            <tr>
+                                <td><strong>{{ skill.name }}</strong></td>
+                                <td><span class="growth-positive">{{ skill.growth }}</span></td>
+                                <td><span class="demand-{{ skill.demand|lower|replace(' ', '-') }}">{{ skill.demand }}</span></td>
+                                <td>{{ skill.category }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Top Industries -->
+            <div class="market-section">
+                <h2>🏭 Fastest Growing Industries</h2>
+                <div class="industries-grid">
+                    {% for industry in market_data.top_industries %}
+                    <div class="industry-card">
+                        <h3>{{ industry.name }}</h3>
+                        <div class="industry-stats">
+                            <span class="growth">{{ industry.growth }}</span>
+                            <span class="jobs">{{ industry.jobs }} jobs</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Salary Trends -->
+            <div class="market-section">
+                <h2>💰 Salary Trends 2024</h2>
+                <div class="salary-trends">
+                    <div class="trend-card">
+                        <span class="trend-level">Entry Level</span>
+                        <span class="trend-amount">{{ market_data.salary_trends.entry }}</span>
+                    </div>
+                    <div class="trend-card">
+                        <span class="trend-level">Mid Level</span>
+                        <span class="trend-amount">{{ market_data.salary_trends.mid }}</span>
+                    </div>
+                    <div class="trend-card">
+                        <span class="trend-level">Senior Level</span>
+                        <span class="trend-amount">{{ market_data.salary_trends.senior }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Insights -->
+            <div class="market-insights-box">
+                <h3>💡 Key Market Insights</h3>
+                <ul>
+                    <li>AI and Machine Learning skills are growing at 156% year-over-year</li>
+                    <li>Cloud computing professionals see 25-35% salary premiums</li>
+                    <li>Cybersecurity roles have 0% unemployment rate</li>
+                    <li>Full-stack developers are most in-demand globally</li>
+                    <li>Remote work has increased job opportunities by 45%</li>
+                </ul>
+            </div>
+
+            <div class="action-buttons">
+                <a href="/predict" class="btn-secondary">Check Your Career Path</a>
+                <a href="/readiness" class="btn-primary">Assess Your Readiness →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 CareerAI | AI-Powered Career Intelligence Platform</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+Skill,Demand_Score,Avg_Salary_LPA,Growth_Rate_%,Hiring_Trend
+UI/UX Design,100,25,37,High
+Cloud Security,100,12,15,High
+Docker,100,11,19,Very High
+Data Engineering,99,21,29,Moderate
+Git,99,22,35,Moderate
+Spark,97,18,32,Moderate
+Ethical Hacking,96,18,26,Very High
+Machine Learning,96,25,10,Moderate
+Power BI,95,9,20,Moderate
+Hadoop,93,18,29,High
+React,92,22,25,High
+Cyber Security,91,11,15,Very High
+Data Analytics,91,18,35,Very High
+Azure,90,14,37,Moderate
+Blockchain,90,12,36,Moderate
+Java,90,13,19,High
+Computer Vision,90,11,28,Moderate
+Flask,89,15,33,Very High
+Microservices,89,16,26,Moderate
+API Development,88,4,27,Moderate
+R Programming,88,7,25,High
+Statistics,88,11,30,Moderate
+Python,88,10,37,Very High
+Agile,88,22,17,High
+Excel,88,20,31,Moderate
+Big Data,87,20,18,Very High
+Node.js,87,20,24,High
+DevOps,84,14,22,High
+Kubernetes,84,10,27,Moderate
+SQL,83,9,22,High
+Artificial Intelligence,82,20,32,Moderate
+Tableau,82,24,15,High
+LLM Engineering,81,16,24,Very High
+Django,81,17,12,High
+Deep Learning,81,14,16,High
+Advanced Excel,80,4,38,High
+Selenium,80,14,30,Very High
+System Design,79,14,33,Very High
+C++,77,20,37,Moderate
+Prompt Engineering,76,14,27,Very High
+Figma,75,4,34,Very High
+Google Cloud,74,14,20,High
+Business Intelligence,74,10,34,High
+Product Analytics,74,5,20,High
+Automation Testing,74,9,20,Very High
+MLOps,72,16,12,High
+NLP,72,14,36,Moderate
+AWS,72,13,21,Very High
+Scrum,71,11,37,High
+Linux,70,15,15,Very High

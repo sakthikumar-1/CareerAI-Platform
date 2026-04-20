@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Prediction - CareerAI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="animated-bg"></div>
+    
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">Career<span class="gradient">AI</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/predict" class="active">Predict</a>
+                <a href="/readiness">Readiness</a>
+                <a href="/market">Market</a>
+            </div>
+        </nav>
+
+        <div class="prediction-container">
+            <div class="prediction-header">
+                <h1>🎯 Career Domain Prediction</h1>
+                <p>Enter your details and let AI find your ideal career path</p>
+            </div>
+
+            <div class="prediction-card">
+                <form method="POST">
+                    <div class="form-group">
+                        <label>💻 Primary Skill <span class="required">*</span></label>
+                        <input type="text" name="primary_skill" placeholder="e.g., Python, Java, SQL, JavaScript" required>
+                        <small>Your main programming language or technical skill</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>🔧 Extra Skills <span class="optional">(Optional)</span></label>
+                        <input type="text" name="extra_skills" placeholder="e.g., React, SQL, AWS, Docker">
+                        <small>Comma-separated list of additional skills</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>📅 Experience (Years)</label>
+                            <input type="number" name="experience" step="1" min="0" value="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>🎓 Education</label>
+                            <select name="degree" required>
+                                <option value="">Select Degree</option>
+                                <option value="High School">High School</option>
+                                <option value="Bachelor's">Bachelor's Degree</option>
+                                <option value="Master's">Master's Degree</option>
+                                <option value="PhD">PhD</option>
+                                <option value="Bootcamp">Coding Bootcamp</option>
+                                <option value="Self-taught">Self-taught</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>⏰ Career Gap (Years)</label>
+                        <input type="number" name="career_gap" step="1" min="0" value="0">
+                        <small>Any employment gap in your career</small>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>Predict My Career →</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Popular Skills -->
+            <div class="popular-skills">
+                <h3>💡 Popular Skills in Demand</h3>
+                <div class="skills-cloud">
+                    <span class="skill-cloud">Python</span>
+                    <span class="skill-cloud">SQL</span>
+                    <span class="skill-cloud">JavaScript</span>
+                    <span class="skill-cloud">React</span>
+                    <span class="skill-cloud">AWS</span>
+                    <span class="skill-cloud">Docker</span>
+                    <span class="skill-cloud">Machine Learning</span>
+                    <span class="skill-cloud">Java</span>
+                    <span class="skill-cloud">Tableau</span>
+                    <span class="skill-cloud">Power BI</span>
+                    <span class="skill-cloud">Kubernetes</span>
+                    <span class="skill-cloud">TypeScript</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 CareerAI | AI-Powered Career Intelligence Platform</p>
+    </footer>
+</body>
+</html>

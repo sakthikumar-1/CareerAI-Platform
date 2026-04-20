@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readiness Check - CareerAI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7c3aed"/>
+                <stop offset="100%" stop-color="#ec4899"/>
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <div class="animated-bg"></div>
+    
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">Career<span class="gradient">AI</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/predict">Predict</a>
+                <a href="/readiness" class="active">Readiness</a>
+                <a href="/market">Market</a>
+            </div>
+        </nav>
+
+        <div class="readiness-wrapper">
+            <div class="readiness-header">
+                <h1>📊 Role Readiness Assessment</h1>
+                <p>Evaluate your preparation for specific roles</p>
+            </div>
+
+            <div class="readiness-card-modern">
+                <form method="POST">
+                    <div class="form-group-modern">
+                        <label>🎯 Select Target Role</label>
+                        <select name="role" class="role-select" required>
+                            <option value="">-- Choose a role --</option>
+                            <option value="Data Analyst">📊 Data Analyst</option>
+                            <option value="Data Analytics">📈 Data Analytics Specialist</option>
+                            <option value="Python Backend Engineer">🐍 Python Backend Engineer</option>
+                            <option value="Java Backend Engineer">☕ Java Backend Engineer</option>
+                            <option value="Full Stack Developer">🌐 Full Stack Developer</option>
+                            <option value="Frontend Developer">🎨 Frontend Developer</option>
+                            <option value="Data Scientist">🔬 Data Scientist</option>
+                            <option value="DevOps Engineer">⚙️ DevOps Engineer</option>
+                            <option value="AI/ML Engineer">🤖 AI/ML Engineer</option>
+                            <option value="Cloud Architect">☁️ Cloud Architect</option>
+                            <option value="Cybersecurity Specialist">🔒 Cybersecurity Specialist</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group-modern">
+                        <label>🔧 Your Skills (comma separated)</label>
+                        <textarea name="skills" rows="4" placeholder="e.g., python, sql, excel, tableau, pandas, power bi" required></textarea>
+                        <small>List all your technical skills</small>
+                    </div>
+
+                    <button type="submit" class="submit-btn-modern">
+                        <span>Analyze My Readiness →</span>
+                    </button>
+                </form>
+
+                {% if result %}
+                <div class="readiness-results-modern">
+                    <!-- Score Section -->
+                    <div class="score-section-modern">
+                        <div class="score-circle-modern" id="scoreCircle">
+                            <div class="score-inner-modern">
+                                <div class="score-value-modern">{{ result.score }}%</div>
+                                <div class="score-label-modern">Readiness</div>
+                            </div>
+                        </div>
+                        <div class="status-badge-modern status-{{ result.status_color }}">
+                            <span class="status-icon">{{ result.status_icon }}</span>
+                            <span class="status-text">{{ result.status }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Required Skills -->
+                    <div class="skills-analysis-modern">
+                        <h3>✅ Required Skills ({{ result.matched_required|length }}/{{ result.matched_required|length + result.missing_required|length }})</h3>
+                        <div class="skills-grid-modern">
+                            {% for skill in result.matched_required %}
+                                <span class="skill-matched-modern">
+                                    <span class="skill-check">✓</span> {{ skill }}
+                                </span>
+                            {% endfor %}
+                            {% for skill in result.missing_required %}
+                                <span class="skill-missing-modern">
+                                    <span class="skill-cross">✗</span> {{ skill }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Preferred Skills -->
+                    {% if result.matched_preferred %}
+                    <div class="skills-analysis-modern">
+                        <h3>⭐ Preferred Skills ({{ result.matched_preferred|length }})</h3>
+                        <div class="skills-grid-modern">
+                            {% for skill in result.matched_preferred %}
+                                <span class="skill-preferred-modern">
+                                    {{ skill }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Learning Path -->
+                    <div class="learning-section-modern">
+                        <h3>📚 Recommended Learning Path</h3>
+                        <div class="learning-steps-modern">
+                            {% for skill in result.missing_required[:4] %}
+                                <div class="learning-step-modern">
+                                    <span class="step-number">{{ loop.index }}</span>
+                                    <span>Master <strong>{{ skill }}</strong> through online courses and projects</span>
+                                </div>
+                            {% endfor %}
+                            <div class="learning-step-modern">
+                                <span class="step-number">{{ result.missing_required|length + 1 }}</span>
+                                <span>Build a portfolio project showcasing these skills</span>
+                            </div>
+                            <div class="learning-step-modern">
+                                <span class="step-number">{{ result.missing_required|length + 2 }}</span>
+                                <span>Get certified: {{ result.certifications[0] if result.certifications else "Industry recognized certification" }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="cert-section-modern">
+                        <h3>🎓 Recommended Certifications</h3>
+                        <div class="cert-grid-modern">
+                            {% for cert in result.certifications %}
+                                <div class="cert-item-modern">
+                                    <span class="cert-icon">📜</span>
+                                    <span>{{ cert }}</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Salary Expectations -->
+                    <div class="salary-section-modern">
+                        <h3>💰 Salary Expectations for {{ result.role }}</h3>
+                        <div class="salary-grid-modern">
+                            <div class="salary-level-modern">
+                                <span class="level-icon">🌱</span>
+                                <span class="level-name">Entry Level</span>
+                                <span class="salary-amount">{{ result.salary_range.entry }}</span>
+                            </div>
+                            <div class="salary-level-modern">
+                                <span class="level-icon">📈</span>
+                                <span class="level-name">Mid Level</span>
+                                <span class="salary-amount">{{ result.salary_range.mid }}</span>
+                            </div>
+                            <div class="salary-level-modern">
+                                <span class="level-icon">🏆</span>
+                                <span class="level-name">Senior Level</span>
+                                <span class="salary-amount">{{ result.salary_range.senior }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    const score = {{ result.score }};
+                    const radius = 62;
+                    const circumference = 2 * Math.PI * radius;
+                    const offset = circumference - (score / 100) * circumference;
+                    
+                    const circle = document.getElementById('scoreCircle');
+                    if (circle) {
+                        circle.style.background = `conic-gradient(#7c3aed 0deg ${score * 3.6}deg, #e2e8f0 ${score * 3.6}deg)`;
+                    }
+                </script>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 CareerAI | AI-Powered Career Intelligence Platform</p>
+    </footer>
+</body>
+</html>
